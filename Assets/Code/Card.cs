@@ -35,6 +35,7 @@ public class Card : MonoBehaviour
 
     private int  _queued = 0;
     private bool _selected;
+    private bool _hovered;
     private bool _moving;
     private bool _held;
 
@@ -71,6 +72,9 @@ public class Card : MonoBehaviour
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, _idlePosition, speed * Time.deltaTime);
         }
     }
+
+    void OnMouseEnter() { _hovered = true; RefreshName(); }
+    void OnMouseExit() { _hovered = false; RefreshName(); }
 
     void OnMouseDown() { Press(); }
     void OnMouseUp() { Release(); }
@@ -145,7 +149,7 @@ public class Card : MonoBehaviour
     {
         gameObject.name = $" [ {IdleX, 3}, {IdleY,3} ] {_elementName} ";
         _elementTxt.text = $" {_elementName} ";
-        _elementTxt.gameObject.SetActive(_selected);
+        _elementTxt.gameObject.SetActive(_hovered);
     }
 
     public void SetElement(string elementName)
