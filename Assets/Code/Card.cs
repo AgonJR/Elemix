@@ -88,7 +88,7 @@ public class Card : MonoBehaviour
         // _sFXPress?.Play();
         _held = true;
         _meshAnimator.enabled = false;
-        _meshTransform.localPosition = new Vector3(0,0,-0.5f);
+        _meshTransform.localPosition = new Vector3(0,0,0.3f);
     }
 
     private void Release() 
