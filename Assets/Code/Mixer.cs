@@ -11,6 +11,10 @@ public class Mixer : MonoBehaviour
 
     [SerializeField] private GameObject _mixVFX;
     [SerializeField] private AudioSource _mixSFX;
+
+    [Tooltip("Each element can be created only once")]
+    public bool ExclusiveMixMode = true; 
+
     [Space]
     [SerializeField] private List<ScriptableElement> _allElementData;
     
@@ -113,7 +117,12 @@ public class Mixer : MonoBehaviour
             if (_allElementData[i].MixHash() == mixHash)
             {
                 var mixResult = _allElementData[i];
-                _allElementData.RemoveAt(i);
+
+                if ( ExclusiveMixMode )
+                {
+                    _allElementData.RemoveAt(i);
+                }
+
                 return mixResult;
             }
         }
