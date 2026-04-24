@@ -72,13 +72,16 @@ public class Mixer : MonoBehaviour
 
         if (mixResult == null) return null;
 
-        // Spawn at Midpoint
-        int mX = (int)((c1.IdleX + c2.IdleX) / 2);
-        int mY = (int)((c1.IdleY + c2.IdleY) / 2);
-
         Card newCard = GameBoard.Instance.SpawnCard(c2.IdleX, c2.IdleY);
 
         newCard.SetElement(mixResult);
+
+        Vector2 posCurrC1 = c1.transform.localPosition;
+        Vector2 posCurrC2 = c2.transform.localPosition;
+
+        int mX = (int)((posCurrC1.x + posCurrC2.x) / 2); 
+        int mY = (int)((posCurrC1.y + posCurrC2.y) / 2); 
+
         GameBoard.Instance.PlaceCard(newCard, mX, mY);
 
         PlayVFX(mX, mY);
